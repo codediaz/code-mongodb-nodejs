@@ -4,9 +4,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const app = express();
-const port = process.env.PORT || 3000;
-
-const mongoURL = process.env.MONGO_URL || 'mongodb://localhost:27017/mi_base_datos';
+const port = process.env.PORT;
+const mongoURL = process.env.MONGO_URL 
 
 mongoose.connect(mongoURL, {
   useNewUrlParser: true,
