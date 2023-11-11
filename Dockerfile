@@ -2,7 +2,7 @@ FROM node:14-alpine3.17
 
 WORKDIR /usr/src/app
 
-COPY package.json .
+COPY package*.json ./
 
 RUN npm install
 
@@ -12,4 +12,4 @@ ENV PORT 3000
 
 EXPOSE $PORT
 
-CMD ["npm", "start"]
+CMD ["npm","run","dev"]

@@ -3,28 +3,28 @@ services:
   app:
     container_name: mongodb-nodejs
     build:
-      context: ./app
-      dockerfile: Dockerfile
+      context: . 
+      dockerfile: Dockerfile 
     ports:
-      - "3000:3000"
+      - "${PORT}:3000"
     volumes:
-      - ./app:/usr/src/app
-      - /usr/src/app/node_modules
+      - .:/usr/src/app  
+      - /usr/src/app/node_modules  
     depends_on:
       - mongo
     environment:
-      - MONGO_URL=mongodb://mongo:27017/mi_base_datos
+      - MONGO_URL=${ENV_MONGO_URL}
 
   mongo:
     container_name: mongo_db
     image: mongo:latest
     ports:
-      - "27017:27017"
+      - "${DB_PORT}:27017"
     volumes:
       - mongo_data:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=usuario
-      - MONGO_INITDB_ROOT_PASSWORD=contraseña
+      - MONGO_INITDB_ROOT_USERNAME=${DB_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${DB_PASSWORD}
 
 volumes:
   mongo_data:
